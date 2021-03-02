@@ -36,14 +36,14 @@ public class BlockingQueueDemo {
 
     public static void main(String[] args) {
         BlockingQueue<String> blockingQueue = new ArrayBlockingQueue<>(5);
-//        try {
-//            System.out.println(blockingQueue.offer("a", 2L, TimeUnit.SECONDS));
-//            System.out.println(blockingQueue.offer("b", 2L, TimeUnit.SECONDS));
-//            System.out.println(blockingQueue.offer("c", 2L, TimeUnit.SECONDS));
-//            System.out.println(blockingQueue.offer("x", 2L, TimeUnit.SECONDS));
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            System.out.println(blockingQueue.offer("a", 2L, TimeUnit.SECONDS));
+            System.out.println(blockingQueue.offer("b", 2L, TimeUnit.SECONDS));
+            System.out.println(blockingQueue.offer("c", 2L, TimeUnit.SECONDS));
+            System.out.println(blockingQueue.offer("x", 2L, TimeUnit.SECONDS));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         for (int i = 1; i < 10; i++) {
             int finalI = i;

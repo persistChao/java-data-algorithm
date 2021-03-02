@@ -11,7 +11,7 @@ import java.util.concurrent.locks.ReentrantLock;
  *  方案2 使用 Lock ReentrantLock  Condition 两个线程就创建两个Condition
  * @author answer
  * @version 1.0.0
- * @date 2021/3/1 6:38 下午
+ * @date 2021/3/1 6:38 下 午
  */
 
 class ShareData {
