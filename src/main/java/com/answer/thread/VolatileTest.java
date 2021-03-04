@@ -10,7 +10,7 @@ public class VolatileTest {
 
 
     public static class Work{
-        private volatile int a = 0;
+        private  int a = 0;
 
         void shutDown() {
             a = 1;
@@ -20,7 +20,6 @@ public class VolatileTest {
         void doWork() {
             while (a == 0) {
                 System.out.println(Thread.currentThread().getName() + " worker is working...");
-
             }
             System.out.println(Thread.currentThread().getName() + " come in doWork and not print working...");
         }

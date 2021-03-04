@@ -1,5 +1,6 @@
 package com.answer.thread;
 
+import java.util.Random;
 import java.util.concurrent.Semaphore;
 
 /**
@@ -18,7 +19,8 @@ public class SemaphoreDemo {
                 try {
                     semaphore.acquire();
                     System.out.println(Thread.currentThread().getName() + "\t 抢到车位");
-                    Thread.sleep(3000);
+                    Thread.sleep(new Random().nextInt(3000));
+//                    Thread.sleep(3000);
                     System.out.println(Thread.currentThread().getName() +"\t 停车3秒后离开");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
