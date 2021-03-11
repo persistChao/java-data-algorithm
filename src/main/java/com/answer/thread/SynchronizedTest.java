@@ -10,4 +10,10 @@ public class SynchronizedTest {
     public synchronized void method() {
         System.out.println("synchronized 修饰方法！");
     }
+
+    public static void main(String[] args) {
+        SynchronizedTest test = new SynchronizedTest();
+        test.method();
+
+    }
 }
