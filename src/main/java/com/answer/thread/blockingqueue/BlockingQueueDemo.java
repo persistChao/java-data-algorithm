@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit;
  * <p>
  * 核心方法 抛出异常   特殊值     阻塞      超时
  * 插入    add(e)    offer(e)  put(e)   offer(e,item,unit)
- * 移除    remove()  poll9）   take()   poll(time,unit)
+ * 移除    remove()  poll(）   take()   poll(time,unit)
  * 检查    element() peek()    不可用    不可用
  *
  * @author answer

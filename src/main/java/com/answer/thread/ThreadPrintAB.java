@@ -25,7 +25,7 @@ class ShareData {
                 e.printStackTrace();
             }
         }
-        System.out.println("A ");
+        System.out.print("A ");
         number++;
         notifyAll();
     }
@@ -38,7 +38,7 @@ class ShareData {
                 e.printStackTrace();
             }
         }
-        System.out.println("B ");
+        System.out.print("B ");
         number--;
         notifyAll();
     }
@@ -85,28 +85,28 @@ public class ThreadPrintAB {
 
     public static void main(String[] args) {
         ShareData shareData = new ShareData();
-//        new Thread(()->{
-//            for (int i = 0; i < 10; i++) {
-//                shareData.printA();
-//            }
-//        },"A").start();
-//        new Thread(()->{
-//            for (int i = 0; i <10 ; i++) {
-//                shareData.printB();
-//            }
-//        },"B").start();
-
-
         new Thread(()->{
             for (int i = 0; i < 10; i++) {
-                shareData.printC();
+                shareData.printA();
             }
-        },"C").start();
+        },"A").start();
         new Thread(()->{
             for (int i = 0; i <10 ; i++) {
-                shareData.printD();
+                shareData.printB();
             }
-        },"D").start();
+        },"B").start();
+
+//
+//        new Thread(()->{
+//            for (int i = 0; i < 10; i++) {
+//                shareData.printC();
+//            }
+//        },"C").start();
+//        new Thread(()->{
+//            for (int i = 0; i <10 ; i++) {
+//                shareData.printD();
+//            }
+//        },"D").start();
 
     }
 }
