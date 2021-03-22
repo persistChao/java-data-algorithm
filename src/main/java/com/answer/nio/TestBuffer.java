@@ -13,22 +13,22 @@ import java.nio.ByteBuffer;
  * FloatBuffer
  * DoubleBuffer
  * 上述缓冲区管理方式机会一致 通过allocate 获取缓冲区
- * <p>
+ *
  * 缓冲区存储数据的两个核心方法
  * put()  存入数据到缓冲区
  * get()  获取缓冲区数据
- * <p>
+ *
  * 缓冲区四个核心属性
  * 1 capacity: 容量表示缓冲区最大数据存储的容量，一旦声明不能改变
  * 2 limit: 界限，表示缓冲区可以操作的数据大小（limit后不能读写）
  * 3 position: 位置 表示缓冲区中正在操作数据的位置
  * 0<=mark<=position<limit<capacity
- * <p>
+ *
  * 4 mark 标记 表示记录当前position的位置，可以通过reset()恢复到mark的位置
  *
  * 直接缓冲区与非直接缓冲区
- * 非直接缓冲区：allocate() 分配在jvm的内存中 可以提高效率
- * 直接缓冲区： allocateDirect() 分配在操作系统的内从中，不在jvm内存上 不安全
+ *      非直接缓冲区：allocate() 分配在jvm的内存中 可以提高效率
+ *      直接缓冲区： allocateDirect() 分配在操作系统的内从中，不在jvm内存上 不安全
  * @author answer
  * @version 1.0.0
  * @date 2021/3/18 3:39 下午
