@@ -2,6 +2,7 @@ package com.answer.nio.netty.simple;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -50,6 +51,17 @@ public class NettyServer {
             //绑定一个端口并且同步，生成一个channelFuture
             //启动服务器（并绑定端口）
             ChannelFuture cf = bootstrap.bind(6668).sync();
+            //cf 注册监听器 监控我们关心的事件
+            cf.addListener(new ChannelFutureListener() {
+                @Override
+                public void operationComplete(ChannelFuture future) throws Exception {
+                    if (cf.isSuccess()) {
+                        System.out.println("监听端口6668绑定成功");
+                    }else {
+                        System.out.println("金婷端口6668失败");
+                    }
+                }
+            });
             //对关闭通道进行监听
             cf.channel().closeFuture().sync();
         } catch (Exception e) {
