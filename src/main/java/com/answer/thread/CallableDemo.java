@@ -32,6 +32,7 @@ public class CallableDemo  {
         FutureTask<Integer> futureTask2 = new FutureTask<>(new CallableData());
         new Thread(futureTask2,"C").start();
         int c = futureTask2.get();
+        System.out.println("c="+c);
 //        int b = futureTask.get();
         //        int b = futureTask.get(1, TimeUnit.SECONDS);
 
@@ -43,6 +44,7 @@ public class CallableDemo  {
 //        }
         //一般放到最后 给子线程更多的时间计算
         int b = futureTask1.get();
+        System.out.println("b="+b);
 
         System.out.println("a+b+c=" + (a+b+c));
 

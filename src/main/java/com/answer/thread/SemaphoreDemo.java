@@ -15,12 +15,10 @@ public class SemaphoreDemo {
         Semaphore semaphore = new Semaphore(3);
         for (int i = 1; i <= 6 ; i++) {
             new Thread(()->{
-
                 try {
                     semaphore.acquire();
                     System.out.println(Thread.currentThread().getName() + "\t 抢到车位");
                     Thread.sleep(new Random().nextInt(3000));
-//                    Thread.sleep(3000);
                     System.out.println(Thread.currentThread().getName() +"\t 停车3秒后离开");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
