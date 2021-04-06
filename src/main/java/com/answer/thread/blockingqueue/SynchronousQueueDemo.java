@@ -4,13 +4,13 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.SynchronousQueue;
 
 /**
- * 阻塞队列 SynchronizedQueue
+ * 阻塞队列 SynchronousQueue
  * 0容量 生产一个 使用一个
  * @author answer
  * @version 1.0.0
  * @date 2021/3/1 3:47 下午
  */
-public class SynchronizedQueueDemo {
+public class SynchronousQueueDemo {
     public static void main(String[] args) {
 
         BlockingQueue<String> blockingQueue = new SynchronousQueue<>();
