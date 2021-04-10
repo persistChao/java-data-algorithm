@@ -1,5 +1,7 @@
 package com.answer.algorithm.queue;
 
+import java.util.Stack;
+
 /**
  * @author answer
  * @version 1.0.0
@@ -8,6 +10,7 @@ package com.answer.algorithm.queue;
 public class TestMyQueue {
 
     public static void main(String[] args) {
+
         MyQueue que = new MyQueue();
         que.add(1);
         que.add(2);
