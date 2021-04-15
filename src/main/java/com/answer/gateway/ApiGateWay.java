@@ -114,7 +114,6 @@ public class ApiGateWay {
                     e.printStackTrace();
                 }
 
-
                 try {
                     Thread.sleep(100L);
                 } catch (InterruptedException e) {

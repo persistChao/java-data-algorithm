@@ -1,9 +1,7 @@
 package com.answer.data.linked;
 
 
-
 /**
- *
  * @author answer
  * @version 1.0
  * @date 2021/2/18 3:56 下午
@@ -22,7 +20,7 @@ public class SingleLinkedList<E> {
     }
 
 
-    public static   class Node<E> {
+    public static class Node<E> {
         private E item;
         private Node<E> next;
 
@@ -49,8 +47,25 @@ public class SingleLinkedList<E> {
             return item;
         }
 
+        @Override
+        public String toString() {
+            return "Node{" +
+                    "item=" + item +
+                    ", next=" + next +
+                    '}';
+        }
 
+        public void show() {
+            Node<E> n = this;
+            while (n!= null) {
+                System.out.println(n.getItem());
+                n = n.next;
+            }
+        }
+    }
 
+    public void show(Node<E> node) {
+        node.show();
     }
 
 
@@ -123,12 +138,13 @@ public class SingleLinkedList<E> {
 
     /**
      * 反转链表 - 递归方式
+     *
      * @param head 头结点
+     * @return com.answer.array.SingleLinkedList.Node<E>
      * @author answer
      * @date 2021/2/19 3:25 下午
-     * @return com.answer.array.SingleLinkedList.Node<E>
      */
-    public  Node<E> reverse(Node<E> head) {
+    public Node<E> reverse(Node<E> head) {
         if (head == null || head.next == null) {
             return head;
         }
@@ -141,9 +157,10 @@ public class SingleLinkedList<E> {
 
     /**
      * 反转链表
+     *
+     * @return void
      * @author answer
      * @date 2021/2/19 3:25 下午
-     * @return void
      */
     public void reverseLink() {
         head = reverse(head);
@@ -151,14 +168,15 @@ public class SingleLinkedList<E> {
 
     /**
      * 遍历方式反转
+     *
+     * @return void
      * @author answer
      * @date 2021/2/19 5:13 下午
-     * @return void
      */
     public void reverse2() {
         Node<E> curNode = head;
         Node<E> preNode = null;
-        while (curNode!=null) {
+        while (curNode != null) {
             Node<E> nextNode = curNode.next;
             curNode.next = preNode;
             preNode = curNode;
@@ -167,7 +185,7 @@ public class SingleLinkedList<E> {
         head = preNode;
     }
 
-    public  Node<E> reverseList(Node<E> node) {
+    public Node<E> reverseList(Node<E> node) {
         Node<E> pre = null;
         Node<E> next = null;
         while (node != null) {
@@ -180,12 +198,11 @@ public class SingleLinkedList<E> {
     }
 
     public void reverse3(Node<E> node) {
-        if (node!=null) {
-            reverse3(node.next );
-            System.out.print(node.getItem() +" ");
+        if (node != null) {
+            reverse3(node.next);
+            System.out.print(node.getItem() + " ");
         }
     }
-
 
 
     public static void main(String[] args) {
@@ -197,7 +214,6 @@ public class SingleLinkedList<E> {
         for (int i = 0; i < list.size; i++) {
             System.out.print(list.get(i).item);
         }
-
 
 
     }

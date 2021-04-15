@@ -13,18 +13,18 @@ public class ReverseLinkedListTest {
 
     @Test
     public void testReverseList() {
-        SingleLinkedList<String> list = new SingleLinkedList<>();
-        list.add("1 ");
-        list.add("2 ");
-        list.add("3 ");
-        list.add("4 ");
-        list.add("5 ");
-        Stack<SingleLinkedList.Node<String>> stack = new Stack<>();
+        SingleLinkedList<Integer> list = new SingleLinkedList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+//        Stack<SingleLinkedList.Node<Integer>> stack = new Stack<>();
         System.out.println("-----原链表输出----");
-        for (int i = 0; i < list.size(); i++) {
-            System.out.print(list.get(i).getItem());
-            stack.push(list.get(i));
-        }
+        list.show(list.get(0));
+//        for (int i = 0; i < list.size(); i++) {
+//            System.out.print(list.get(i).getItem());
+//            stack.push(list.get(i));
+//        }
 
         //删除节点
 //        list.deleteNode(1);
@@ -46,13 +46,14 @@ public class ReverseLinkedListTest {
 
         System.out.println();
         System.out.println("----再次反转链表-3----");
+        list.show(list.get(0));
 //        for (int i = 0; i < list.size() ; i++) {
 //            list.reverse2();
 //        }
 
-        for (int i = 0; i < list.size(); i++) {
-            System.out.print(list.get(i).getItem());
-        }
+//        for (int i = 0; i < list.size(); i++) {
+//            System.out.print(list.get(i).getItem());
+//        }
 
 
     }
