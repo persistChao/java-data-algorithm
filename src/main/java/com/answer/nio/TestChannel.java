@@ -1,6 +1,8 @@
 package com.answer.nio;
 
 
+import io.netty.buffer.ByteBuf;
+
 import java.io.*;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
@@ -60,13 +62,14 @@ public class TestChannel {
     public static void main(String[] args) {
         try {
 //            testChannel1();
+            testWriteBufferToChannel();
 
 //            testChannel2();
 
 //            testCharset();
 
 //            testScatter();
-            testCharset2();
+//            testCharset2();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -169,8 +172,8 @@ public class TestChannel {
         FileChannel inChannel = null;
         FileChannel outChannel = null;
         try {
-            fis = new FileInputStream("/Users/suchao/Desktop/temp/Microsoft_Office_2016_15.40.17110800_Installer.pkg");
-            fos = new FileOutputStream("/Users/suchao/Desktop/temp/Microsoft_Office_2.pkg");
+            fis = new FileInputStream("/Users/suchao/Desktop/temp/笔记.txt");
+            fos = new FileOutputStream("/Users/suchao/Desktop/temp/常用记录.txt");
 
             //获取通道
             inChannel = fis.getChannel();
@@ -233,5 +236,20 @@ public class TestChannel {
 
         System.out.println("直接缓冲区方式耗时" + (System.currentTimeMillis() - start));
 
+    }
+
+
+    public static void testWriteBufferToChannel() throws IOException {
+        String str = "hello nio ,hello netty";
+        FileOutputStream fileOutputStream = new FileOutputStream("/Users/suchao/Desktop/temp/bufferToChannel.txt");
+        FileChannel channel = fileOutputStream.getChannel();
+        ByteBuffer buffer = ByteBuffer.allocate(1024);
+        buffer.put(str.getBytes());
+
+        buffer.flip();
+        channel.write(buffer);
+
+        fileOutputStream.close();
+        channel.close();
     }
 }

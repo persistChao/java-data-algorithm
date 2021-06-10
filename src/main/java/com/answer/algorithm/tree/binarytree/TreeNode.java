@@ -31,6 +31,18 @@ public class TreeNode {
         this.rightNode = rightNode;
     }
 
+    public int getValue() {
+        return value;
+    }
+
+    public TreeNode getLeftNode() {
+        return leftNode;
+    }
+
+    public TreeNode getRightNode() {
+        return rightNode;
+    }
+
     @Override
     public String toString() {
         return "TreeNode{" +
