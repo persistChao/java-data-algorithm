@@ -13,8 +13,8 @@ import java.nio.channels.FileChannel;
 public class NioFileChannelTest {
 
     public static void main(String[] args) throws IOException {
-//        testChannelReadFromBuffer();
-        test();
+        testChannelReadFromBuffer();
+//        test();
 
     }
 
