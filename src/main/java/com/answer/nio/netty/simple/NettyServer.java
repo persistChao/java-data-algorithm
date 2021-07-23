@@ -58,7 +58,7 @@ public class NettyServer {
                     if (cf.isSuccess()) {
                         System.out.println("监听端口6668绑定成功");
                     }else {
-                        System.out.println("金婷端口6668失败");
+                        System.out.println("监听端口失败");
                     }
                 }
             });
