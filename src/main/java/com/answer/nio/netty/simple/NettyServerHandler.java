@@ -30,8 +30,6 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         //比如这里有一个非常耗时长的业务-->异步执行-->提交channel 对应的NioEventLoop 的taskQueue中
 
-
-
         //1 解决方案 用户程序自定义的普通任务
         ctx.channel().eventLoop().execute(()->{
             try {
