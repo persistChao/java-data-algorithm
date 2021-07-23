@@ -1,5 +1,6 @@
 package com.answer.nio.netty.simple;
 
+import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -29,7 +30,8 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         //比如这里有一个非常耗时长的业务-->异步执行-->提交channel 对应的NioEventLoop 的taskQueue中
-
+        ByteBuf buf = (ByteBuf) msg;
+        System.out.println("客户端发送的消息是" + buf.toString(CharsetUtil.UTF_8));
         //1 解决方案 用户程序自定义的普通任务
         ctx.channel().eventLoop().execute(()->{
             try {
