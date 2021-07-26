@@ -7,6 +7,8 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.*;
 import io.netty.util.CharsetUtil;
 
+import java.net.URI;
+
 /**
  *
  * 说明
@@ -39,6 +41,15 @@ public class TestHttpServerHandler extends SimpleChannelInboundHandler<HttpObjec
                     new DefaultFullHttpResponse(HttpVersion.HTTP_1_1,HttpResponseStatus.OK,content);
             response.headers().set(HttpHeaderNames.CONTENT_TYPE,"text/plain");
             response.headers().set(HttpHeaderNames.CONTENT_LENGTH, content.readableBytes());
+
+            HttpRequest httpRequest = (HttpRequest) msg;
+            //对特定资源进行过滤
+            //获取Uri
+            URI uri = new URI(httpRequest.uri());
+            if("/favicon.ico".equals(uri.getPath())){
+                System.out.println("请求了/favicon.ico ，不做处理，直接返回");
+                return;
+            }
 
             //将构建好的 response返回
             ctx.writeAndFlush(response);
