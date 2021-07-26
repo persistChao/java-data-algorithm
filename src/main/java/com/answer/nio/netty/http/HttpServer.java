@@ -11,7 +11,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
  * @version 1.0.0
  * @date 2021/3/23 11:58 上午
  */
-public class TestServer {
+public class HttpServer {
     public static void main(String[] args) {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
