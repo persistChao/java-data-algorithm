@@ -8,6 +8,7 @@ import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.util.concurrent.GlobalEventExecutor;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * @author answer
@@ -36,7 +37,7 @@ public class GroupChatServerHandler extends SimpleChannelInboundHandler<String> 
         Channel channel = ctx.channel();
         //将客户端加入聊天的消息推送给其他客户端，该方法会将channelGroup中所有的channel遍历并发送消息
         //我们不需要自己遍历
-        channelGroup.writeAndFlush("[客户端]" + channel.remoteAddress() + " 加入聊天\n");
+        channelGroup.writeAndFlush(sdf.format(new Date()) + " [客户端]" + channel.remoteAddress() + " 加入聊天\n");
         //将新连接的客户端的channel加入到 channelGroup管理
         channelGroup.add(channel);
     }
@@ -74,10 +75,10 @@ public class GroupChatServerHandler extends SimpleChannelInboundHandler<String> 
         for (Channel c : channelGroup) {
             //不是当前的channel 转发消息
             if (c != channel) {
-                c.writeAndFlush("[客户] " + c.remoteAddress() + "发送了消息：" + msg + "\n");
+                c.writeAndFlush(sdf.format(new Date()) + " [客户] " + c.remoteAddress() + "发送了消息：" + msg + "\n");
             }else {
                 //回显自己发送的消息
-                c.writeAndFlush("[自己] 发送了消息" + msg + "\n");
+                c.writeAndFlush(sdf.format(new Date()) + " [自己] 发送了消息" + msg + "\n");
             }
         }
     }
