@@ -59,7 +59,7 @@ public class GroupChatServerHandler extends SimpleChannelInboundHandler<String> 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         //表示channel 处于不活动状态 提示xxx离线了
-        System.out.println(ctx.channel().remoteAddress() + "离线了~");
+        System.out.println(ctx.channel().remoteAddress() + " 离线了~");
     }
 
     @Override
