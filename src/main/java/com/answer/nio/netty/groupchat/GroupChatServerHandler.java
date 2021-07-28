@@ -75,7 +75,7 @@ public class GroupChatServerHandler extends SimpleChannelInboundHandler<String> 
         for (Channel c : channelGroup) {
             //不是当前的channel 转发消息
             if (c != channel) {
-                c.writeAndFlush(sdf.format(new Date()) + " [客户] " + c.remoteAddress() + "发送了消息：" + msg + "\n");
+                c.writeAndFlush(sdf.format(new Date()) + " [客户-" + c.remoteAddress() + "] 发送了消息：" + msg + "\n");
             }else {
                 //回显自己发送的消息
                 c.writeAndFlush(sdf.format(new Date()) + " [自己] 发送了消息" + msg + "\n");

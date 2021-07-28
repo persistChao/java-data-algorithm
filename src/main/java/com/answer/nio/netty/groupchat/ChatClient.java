@@ -10,6 +10,7 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Scanner;
 
@@ -52,7 +53,9 @@ public class ChatClient {
             Scanner scanner = new Scanner(System.in);
             while (scanner.hasNextLine()) {
                 String msg = scanner.nextLine();
-                channelFuture.channel().writeAndFlush(msg + "\r\n");
+                if (StringUtils.isNotBlank(msg)) {
+                    channelFuture.channel().writeAndFlush(msg + "\r\n");
+                }
 
             }
 
