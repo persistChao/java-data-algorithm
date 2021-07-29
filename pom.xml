@@ -101,6 +101,14 @@
             <version>2.9.0</version>
         </dependency>
 
+        <!--引入Google protocol-->
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>3.6.1</version>
+        </dependency>
+
+
 
     </dependencies>
 
