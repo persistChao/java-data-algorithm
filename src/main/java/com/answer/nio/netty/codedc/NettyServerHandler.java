@@ -12,7 +12,7 @@ import io.netty.util.CharsetUtil;
  * 说明
  * 使用Google protocol
  * ChannelInboundHandlerAdapter
- * 如果继承SimpleChannelInboundHandler msg的类型就是Student类型 不需要转换
+ * 如果继承SimpleChannelInboundHandler msg的类型是Student
  * @author answer
  * @version 1.0.0
  * @date 2021/3/22 8:36 下午
@@ -38,7 +38,7 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<StudentPOJO.
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, StudentPOJO.Student msg) throws Exception {
-        System.out.println("客户端发送的数据: id=" + msg.getId() + " name=" + msg.getName());
+
     }
 
     /**
