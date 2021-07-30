@@ -1,76 +1,44 @@
 package com.answer.nio.netty.codedc;
 
-import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.CharsetUtil;
-
-import java.util.concurrent.TimeUnit;
 
 
 /**
  *
  * 说明
  * 使用Google protocol
+ * ChannelInboundHandlerAdapter
+ * 如果继承SimpleChannelInboundHandler msg的类型就是Student类型 不需要转换
  * @author answer
  * @version 1.0.0
  * @date 2021/3/22 8:36 下午
  */
-public class NettyServerHandler extends ChannelInboundHandlerAdapter {
+//public class NettyServerHandler extends ChannelInboundHandlerAdapter {
+public class NettyServerHandler extends SimpleChannelInboundHandler<StudentPOJO.Student> {
 
     /**
      * 读取实际数据（可以读取客户端发送的消息）
      * 当有数据读取的时候 channelRead就会被触发
+     *
      * @param ctx 上下文对象 ，含有管道pipeline ，通道 channel，连接地址
      * @param msg 客户端发送的数据 默认是Object的形式
      * @throws Exception
      */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        //比如这里有一个非常耗时长的业务-->异步执行-->提交channel 对应的NioEventLoop 的taskQueue中
-        ByteBuf buf = (ByteBuf) msg;
-        System.out.println("客户端发送的消息是" + buf.toString(CharsetUtil.UTF_8));
-        //1 解决方案 用户程序自定义的普通任务
-        ctx.channel().eventLoop().execute(()->{
-            try {
-                Thread.sleep(1000*5);
-            } catch (InterruptedException e) {
-                System.out.println("发生异常"+e.getMessage());
-            }
-            ctx.writeAndFlush(Unpooled.copiedBuffer("hello 客户端222！~ nice！", CharsetUtil.UTF_8));
-        });
+        //读取从客户端发送的StudentPOJO.Student
+        StudentPOJO.Student student = (StudentPOJO.Student) msg;
+        System.out.println("客户端发送的数据: id=" + student.getId() + " name=" + student.getName());
 
-        ctx.channel().eventLoop().execute(()->{
-            try {
-                Thread.sleep(1000*5);
-            } catch (InterruptedException e) {
-                System.out.println("发生异常"+e.getMessage());
-            }
-            ctx.writeAndFlush(Unpooled.copiedBuffer("hello 客户端333！~ nice！", CharsetUtil.UTF_8));
-        });
+    }
 
-        // 用户自定义定时任务-> 该任务提交到 scheduleTaskQueue中
-        ctx.channel().eventLoop().schedule(()->{
-            try {
-                Thread.sleep(1000*5);
-            } catch (InterruptedException e) {
-                System.out.println("发生异常"+e.getMessage());
-            }
-            ctx.writeAndFlush(Unpooled.copiedBuffer("hello 客户端444！~ nice！", CharsetUtil.UTF_8));
-        },5, TimeUnit.SECONDS);
-
-        System.out.println("【服务器端】go on...");
-//        System.out.println("【服务器端】" + Thread.currentThread().getName());
-//        System.out.println("server ctx="+ctx);
-//        System.out.println("看看channel和pipeline是什么关系");
-//        //本质是一个双向链表
-//         Channel channel = ctx.channel();
-//        ChannelPipeline pipeline = ctx.pipeline();
-//        //将msg转成一个ByteBuffer
-//        ByteBuf buf = (ByteBuf) msg;
-//        System.out.println("【服务器端】收到客户端发送的消息是：" + buf.toString(CharsetUtil.UTF_8));
-//        System.out.println("【服务器端】获得的客户端地址：" + ctx.channel().remoteAddress());
+    @Override
+    protected void channelRead0(ChannelHandlerContext ctx, StudentPOJO.Student msg) throws Exception {
+        System.out.println("客户端发送的数据: id=" + msg.getId() + " name=" + msg.getName());
     }
 
     /**

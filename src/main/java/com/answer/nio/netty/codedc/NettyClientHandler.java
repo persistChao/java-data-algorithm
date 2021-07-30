@@ -21,7 +21,7 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        StudentPOJO.Student student = StudentPOJO.Student.newBuilder().setId(4).setName("answer").build();
+        StudentPOJO.Student student = StudentPOJO.Student.newBuilder().setId(20).setName("chao").build();
         //给服务器端发送消息
         ctx.writeAndFlush(student);
     }
