@@ -38,7 +38,7 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<StudentPOJO.
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, StudentPOJO.Student msg) throws Exception {
-
+        System.out.println("从客户端读取到的数据为");
     }
 
     /**
