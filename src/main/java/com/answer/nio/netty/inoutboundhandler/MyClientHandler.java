@@ -16,7 +16,8 @@ public class MyClientHandler extends SimpleChannelInboundHandler<Long> {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        //发送的是一个null
+        System.out.println("MyClientHandler 发送数据");
+        //发送的是一个long
         ctx.channel().writeAndFlush(123456L);
     }
 }
