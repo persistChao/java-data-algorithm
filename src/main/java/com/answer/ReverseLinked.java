@@ -1,13 +1,14 @@
 package com.answer;
 
 /**
+ * 反转链表
  * @author answer
  * @version 1.0.0
  * @date 2021/4/12 4:57 下午
  */
 
 
-public class Test2 {
+public class ReverseLinked {
 
     static int i = 1;
     static {

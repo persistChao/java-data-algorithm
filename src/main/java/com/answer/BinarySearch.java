@@ -1,11 +1,12 @@
 package com.answer;
 
 /**
+ * 二分查找
  * @author answer
  * @version 1.0.0
  * @date 2021/4/12 4:34 下午
  */
-public class Test1 {
+public class BinarySearch {
 
 
     public static void main(String[] args) {
@@ -30,7 +31,6 @@ public class Test1 {
                     return  search(array, middle +1,height, target);
                 }
             }
-
         }
 
         return -1;
