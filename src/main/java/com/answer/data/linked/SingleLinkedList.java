@@ -1,8 +1,6 @@
 package com.answer.data.linked;
 
 
-import org.w3c.dom.Node;
-
 /**
  * @author answer
  * @version 1.0
