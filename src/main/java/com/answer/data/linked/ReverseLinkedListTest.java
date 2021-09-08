@@ -17,7 +17,7 @@ public class ReverseLinkedListTest {
         list.add(1);
         list.add(2);
         list.add(3);
-        list.add(4);
+//        list.add(4);
 //        Stack<SingleLinkedList.Node<Integer>> stack = new Stack<>();
         System.out.println("-----原链表输出----");
         list.show(list.get(0));
@@ -30,8 +30,12 @@ public class ReverseLinkedListTest {
 //        list.deleteNode(1);
 
         System.out.println();
+//        list.reverseList(list.get(0));
+        SingleLinkedList.Node node = list.reverse4(list.get(0));
+
+        list.show(node);
         //反转链表
-        list.reverseLink();
+//        list.reverseLink();
 //
 //        System.out.println("----反转链表-1---");
 //        for (int i = 0; i < list.size(); i++) {
@@ -54,6 +58,7 @@ public class ReverseLinkedListTest {
 //        for (int i = 0; i < list.size(); i++) {
 //            System.out.print(list.get(i).getItem());
 //        }
+
 
 
     }

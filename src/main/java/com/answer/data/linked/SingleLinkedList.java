@@ -1,6 +1,8 @@
 package com.answer.data.linked;
 
 
+import org.w3c.dom.Node;
+
 /**
  * @author answer
  * @version 1.0
@@ -148,9 +150,9 @@ public class SingleLinkedList<E> {
         if (head == null || head.next == null) {
             return head;
         }
-        Node<E> temp = head.next;
+//        Node<E> temp = head.next;
         Node<E> newHead = reverse(head.next);
-        temp.next = head;
+        head.next.next = head;
         head.next = null;
         return newHead;
     }
@@ -202,6 +204,19 @@ public class SingleLinkedList<E> {
             reverse3(node.next);
             System.out.print(node.getItem() + " ");
         }
+    }
+
+    public Node<E> reverse4(Node<E> head){
+        Node<E> newHead = null;
+        Node<E> temp = null;
+        while (head !=null){
+            temp = head;
+            head = head.next;
+            temp.next = newHead;
+           newHead = temp;
+
+        }
+        return newHead;
     }
 
 
