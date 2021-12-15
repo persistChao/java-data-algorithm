@@ -45,7 +45,6 @@ public class ApiGateWay {
     }
 
     public static Response doForward(String url) {
-        String result = null;
         Response response = null;
         Request request = new Request.Builder()
                 .url(url)
@@ -94,6 +93,7 @@ public class ApiGateWay {
         @Override
         public void run() {
             while (!this.executor.isShutdown()) {
+                System.out.println("监听延迟队列..." + REP_QUEUE.size());
                 try {
                     TrafficRepository t = REP_QUEUE.take();
                     String url = t.getTrafficRepositoryHost() + "?request=" + t.getRequest() + "&response=" + JSON.toJSONString(t.getResponse());
@@ -134,5 +134,10 @@ public class ApiGateWay {
 
         private String trafficRepositoryHost;
 
+    }
+
+    public static void main(String[] args) {
+        ApiGateWay apiGateWay = new ApiGateWay();
+        apiGateWay.forward("http://www.baidu.com", "a.com", "transfer.com");
     }
 }

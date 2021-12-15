@@ -1,20 +1,22 @@
 package com.answer.nio.netty.websocket;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelPipeline;
-import io.netty.channel.EventLoopGroup;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
+import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.WebSocketFrameAggregator;
 import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.stream.ChunkedWriteHandler;
+
+import java.net.SocketAddress;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 长连接服务端
@@ -23,6 +25,7 @@ import io.netty.handler.stream.ChunkedWriteHandler;
  * @date 2021/7/28 4:50 下午
  */
 public class WebSocketServer {
+    protected static ConcurrentHashMap<SocketAddress, ChannelHandlerContext> channelsMap = new ConcurrentHashMap<>();
 
     public static void main(String[] args) throws Exception{
         EventLoopGroup bossGroup = new NioEventLoopGroup();
@@ -48,10 +51,12 @@ public class WebSocketServer {
                             //4 WebSocketServerProtocolHandler 的核心功能是将http协议升级为ws协议，保持长连接
                             pipeline.addLast(new WebSocketServerProtocolHandler("/hello"));
                             //自定义的handler 处理业务逻辑
-                            pipeline.addLast(new WebSocketServerHandler());
+                            pipeline.addLast(new WebSocketServerHandler2());
 
                         }
                     });
+
+            sendData();
 
             //启动服务
             ChannelFuture channelFuture = serverBootstrap.bind(7000).sync();
@@ -61,5 +66,39 @@ public class WebSocketServer {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
         }
+    }
+
+
+    private static void testConsumer(String msg){
+
+        for (Map.Entry<SocketAddress, ChannelHandlerContext> entry : channelsMap.entrySet()) {
+            ChannelHandlerContext ctx = entry.getValue();
+            SocketAddress socketAddress = entry.getKey();
+            System.out.println("发送消息。。。。" + msg);
+            ctx.writeAndFlush(new TextWebSocketFrame(socketAddress.toString()+ "消息..." + msg));
+        }
+
+    }
+
+    private static void sendData(){
+        new Thread(new Runnable() {
+             @Override
+             public void run() {
+                 try {
+                     Thread.sleep(10000);
+                 } catch (InterruptedException e) {
+                     e.printStackTrace();
+                 }
+                 for (int i = 0;i<100;i++){
+                     try {
+                         Thread.sleep(1000);
+                         String msg = "消息"+(i+1);
+                         testConsumer(msg);
+                     } catch (InterruptedException e) {
+                         e.printStackTrace();
+                     }
+                 }
+             }
+         }).start();
     }
 }
