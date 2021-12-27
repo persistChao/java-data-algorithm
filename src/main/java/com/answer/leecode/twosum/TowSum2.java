@@ -1,6 +1,5 @@
 package com.answer.leecode.twosum;
 
-import lombok.val;
 
 /**
  * 两数相加
@@ -44,6 +43,7 @@ public class TowSum2 {
 //        node2.next.next = new ListNode(4);
 
         ListNode result = towSum(node1, node2);
+//        ListNode result = twoSum(node1, node2);
 
         while (result!=null){
             System.out.println(result.value);
@@ -51,8 +51,12 @@ public class TowSum2 {
         }
     }
 
-
-
+    /**
+     * 遍历法
+     * @param node1 node1
+     * @param node2 node2
+     * @return
+     */
     public static ListNode towSum(ListNode node1 , ListNode node2){
         int  total = 0;
         int next1 = 0;
@@ -92,5 +96,28 @@ public class TowSum2 {
         }
         return result.next;
 
+    }
+
+    public static ListNode twoSum(ListNode l1 ,ListNode l2){
+        int total = l1.value + l2.value;
+        int next1 = total/10;
+        ListNode result = new ListNode(total % 10);
+        if (l1.next != null || l2.next != null || next1 != 0) {
+            if (l1.next!=null){
+                l1 = l1.next;
+            }else {
+                l1 = new ListNode(0);
+            }
+
+            if (l2.next!=null){
+                l2 = l2.next;
+            }else {
+                l2 = new ListNode(0);
+            }
+            //这里也可以是l1
+            l2.value = l2.value + next1;
+            result.next = twoSum(l1, l2);
+        }
+        return result;
     }
 }
