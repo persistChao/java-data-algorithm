@@ -1,7 +1,7 @@
 package com.answer.thread;
 
 /**
- * 双端检索机制的单例模式
+ * 双端检索机制的单例模式 双重检查锁
  * 如果 instance 不是volatile的 有可能会重排序 下面的语句
  * instance = new SingletonAndSynchronized();
  * 次语句的执行步骤
@@ -14,6 +14,9 @@ package com.answer.thread;
  */
 public class SingletonAndSynchronized {
 
+    /**
+     * 这里的volatile很重要
+     */
     private volatile static SingletonAndSynchronized instance;
 
     private SingletonAndSynchronized() {
