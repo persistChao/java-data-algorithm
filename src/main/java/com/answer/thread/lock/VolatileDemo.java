@@ -18,6 +18,7 @@ public class VolatileDemo {
 
     static class MyData {
         private volatile int number = 0;
+        private volatile int a = 0;
 
         public void add() {
             number++;
@@ -29,16 +30,31 @@ public class VolatileDemo {
             atomicNumber.incrementAndGet();
 
         }
+
+        /**
+         * 加同步锁 可以实现原子性
+         */
+        public synchronized void addOne() {
+            a++;
+        }
+
+        public void  addO(){
+            synchronized (this){
+                a++;
+            }
+        }
     }
 
 
     public static void main(String[] args) {
 
+        //20个线程同时执行 i++操作 和原子性+1操作看结果
         MyData myData = new MyData();
         for (int i = 1; i <=20 ; i++) {
             new Thread(()->{
                 for (int j = 0; j <1000 ; j++) {
                     myData.add();
+                    myData.addO();
                     myData.addAtomic();
                 }
             },"t"+i).start();
@@ -47,8 +63,9 @@ public class VolatileDemo {
             Thread.yield();
         }
 
-        System.out.println(Thread.currentThread().getName() +"\t finally number value=" + myData.number);
-        System.out.println(Thread.currentThread().getName() +"\t finally atomicNumber value=" + myData.atomicNumber.get());
+        System.out.println(Thread.currentThread().getName() +"\t finally number number=" + myData.number);
+        System.out.println(Thread.currentThread().getName() +"\t finally atomicNumber atomicNumber=" + myData.atomicNumber.get());
+        System.out.println(Thread.currentThread().getName() +"\t finally synchronized a=" + myData.atomicNumber.get());
     }
 
 }
