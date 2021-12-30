@@ -44,6 +44,7 @@ public class DeadLockDemo {
                     System.out.println(Thread.currentThread().getName() + "\t自己持有B 想获取A");
                 }
             }
+
         }
     }
 

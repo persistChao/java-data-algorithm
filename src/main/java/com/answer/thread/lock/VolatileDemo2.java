@@ -7,13 +7,16 @@ package com.answer.thread.lock;
  * @version 1.0
  * @date 2021/2/25 3:11 下午
  */
-
 class MyData{
      volatile int  number = 0;
     public void addTO60(){
         this.number = 60;
     }
 }
+
+/**
+ * @author  answer
+ */
 public class VolatileDemo2 {
 
     public static void main(String[] args) {
