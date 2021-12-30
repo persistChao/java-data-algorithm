@@ -59,13 +59,13 @@ class MyShareData{
 public class ProducerConsumerBlockingQueueDemo {
 
     public static void main(String[] args) {
-        MyShareData myShareData = new MyShareData(new ArrayBlockingQueue<>(10));
+        MyShareData tempData = new MyShareData(new ArrayBlockingQueue<>(10));
 
         new Thread(()->{
             try {
                 System.out.println("生产者启动。。。。");
                 System.out.println();
-                myShareData.producer();
+                tempData.producer();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -75,7 +75,7 @@ public class ProducerConsumerBlockingQueueDemo {
             try {
                 System.out.println("消费者线程启动");
                 System.out.println();
-                myShareData.consumer();
+                tempData.consumer();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -88,7 +88,7 @@ public class ProducerConsumerBlockingQueueDemo {
             TimeUnit.SECONDS.sleep(5);
             System.out.println("5秒钟后 停止生产");
 
-            myShareData.stop();
+            tempData.stop();
 
         } catch (InterruptedException e) {
             e.printStackTrace();

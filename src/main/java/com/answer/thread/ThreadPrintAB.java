@@ -19,26 +19,26 @@ class ShareData {
 
     public synchronized void printA() {
         if (number !=1){
+            System.out.print("A ");
             try {
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        System.out.print("A ");
         number++;
         notifyAll();
     }
 
     public synchronized void printB() {
         if (number !=2){
+            System.out.print("B ");
             try {
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        System.out.print("B ");
         number--;
         notifyAll();
     }
