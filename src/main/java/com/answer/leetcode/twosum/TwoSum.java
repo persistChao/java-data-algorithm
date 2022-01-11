@@ -16,11 +16,11 @@ public class TwoSum {
     public static void main(String[] args) {
         int[] nums = {11, 10, 5, -5};
         int target = 0;
-        int[] result1 = twoSum1(nums, target);
-        int[] result2 = twoSum3(nums, target);
-        for (int i = 0; i <result1.length ; i++) {
-            System.out.println(result1[i]);
-        }
+//        int[] result1 = twoSum1(nums, target);
+        int[] result2 = twoSum2(nums, target);
+//        for (int i = 0; i <result1.length ; i++) {
+//            System.out.println(result1[i]);
+//        }
 
         for (int i = 0; i <result2.length ; i++) {
             System.out.println(result2[i]);
@@ -53,12 +53,27 @@ public class TwoSum {
     }
 
     /**
-     * hash方法
+     * hash方法优化
+     * [11,10,7,2] 9
      * @param nums
      * @param target
      * @return
      */
-    public static int[] twoSum2(int[] nums,int target){
+//    public static int[] twoSum2(int[] nums,int target){
+//        int[] result = new int[2];
+//        Map<Integer, Integer> map = new HashMap<>(nums.length);
+//        for (int i = 0; i <nums.length ; i++) {
+//            int temp = target - nums[i];
+//            if (map.get(temp)!=null){
+//                result[0] = i;
+//                result[1] = map.get(temp);
+//            }else {
+//                map.put(nums[i],i);
+//            }
+//        }
+//        return result;
+//    }
+    public static int[] twoSum2(int[] nums , int target){
         int[] result = new int[2];
         Map<Integer, Integer> map = new HashMap<>(nums.length);
         for (int i = 0; i <nums.length ; i++) {
@@ -67,12 +82,18 @@ public class TwoSum {
                 result[0] = i;
                 result[1] = map.get(temp);
             }else {
-                map.put(nums[i],i);
+                map.put(nums[i], i);
             }
         }
         return result;
     }
 
+    /**
+     * hash法
+     * @param nums
+     * @param target
+     * @return
+     */
     public static int[] twoSum3(int[] nums,int target){
         int[] result = new int[2];
         Map<Integer, Integer> map = new HashMap<>(nums.length);
