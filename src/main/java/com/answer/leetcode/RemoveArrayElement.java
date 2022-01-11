@@ -40,14 +40,13 @@ public class RemoveArrayElement {
         int l = 0;
         int r = nums.length-1;
         while (l<r){
-            int temp = 0;
             while (nums[l]!=val && l <r){
                 l++;
             }
             while (nums[r]==val && l<r){
                 r--;
             }
-            temp = nums[l] ;
+            int temp = nums[l] ;
             nums[l] = nums[r];
             nums[r] = temp;
         }
