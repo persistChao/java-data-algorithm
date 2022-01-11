@@ -19,7 +19,7 @@ public class YouXiaoKuoHao {
 
     public static void main(String[] args) {
         //有效的 {{}}()[] 或者 {}()[]  或者 [{()}] 左括号必须要有相应的
-        String str = "{{}}(){}";
+        String str = "{{}}(){}{[";
         boolean valid = isValid(str);
         System.out.println("是否有效的括号=" + valid);
     }
