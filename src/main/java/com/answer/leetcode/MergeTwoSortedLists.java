@@ -1,4 +1,4 @@
-package com.answer.leecode;
+package com.answer.leetcode;
 
 /**
  * Merge two sorted linked

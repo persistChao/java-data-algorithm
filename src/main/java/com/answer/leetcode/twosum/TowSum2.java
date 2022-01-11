@@ -1,4 +1,4 @@
-package com.answer.leecode.twosum;
+package com.answer.leetcode.twosum;
 
 
 /**
