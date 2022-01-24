@@ -12,11 +12,13 @@ public class Test3 {
 
     public static void main(String[] args) {
         int[] array = new int[]{1, 3, 3, 3, 3,4,4, 5, 6, 7};
+
+        removeDumplyElement(array);
         int target = 3;
 
-        int result = search(array, array.length, 0, target);
-
-        System.out.println("result=" + result);
+//        int result = search(array, array.length, 0, target);
+//
+//        System.out.println("result=" + result);
     }
 
 
@@ -38,9 +40,21 @@ public class Test3 {
 
         }
 
-
         return re;
 
+    }
+
+
+    public static int removeDumplyElement(int[] array){
+        int size = 0;
+        for (int i = 0; i <array.length ; i++) {
+            if (array[i]!= array[size]){
+                 array[++size]=array[i];
+            }
+
+        }
+        System.out.println();
+        return size;
     }
 
 }

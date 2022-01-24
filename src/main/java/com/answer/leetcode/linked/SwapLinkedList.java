@@ -14,8 +14,9 @@ public class SwapLinkedList {
 
     public static void main(String[] args) {
         ListNode node = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, null))));
+        ListNode result = reverseListNode(node);
 //        ListNode result = swapListNode(node);
-        ListNode result = recursion(node);
+//        ListNode result = recursion(node);
         while (result != null) {
             System.out.print(result.value + "");
             result = result.next;
@@ -60,16 +61,45 @@ public class SwapLinkedList {
         return next;
     }
 
+    public static ListNode reverseListNode(ListNode head){
+        ListNode prev = null;
+        ListNode next ;
+        ListNode cur = head;
+        while (cur!=null){
+           next = cur.next;
+           cur.next = prev;
+           prev = cur;
+           cur = next;
+        }
+        return prev;
+    }
+
 
     static class ListNode {
-        private int value;
-        private ListNode next;
+        public int value;
+        public ListNode next;
 
         public ListNode() {
         }
 
         public ListNode(int value, ListNode next) {
             this.value = value;
+            this.next = next;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+        public void setValue(int value) {
+            this.value = value;
+        }
+
+        public ListNode getNext() {
+            return next;
+        }
+
+        public void setNext(ListNode next) {
             this.next = next;
         }
     }
