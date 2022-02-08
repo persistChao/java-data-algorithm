@@ -36,4 +36,20 @@ public class ShellSort {
             }
         }
     }
+
+    public static void shellSort2(int[] array){
+        //步长 插入排序是步长为1 这里相当于步长是2 3 的插入排序
+        for (int gap = array.length /2 ; gap >0 ; gap /=2) {
+            for (int i = gap; i < array.length; i++) {
+                //插入式 间隔为gap的插入排序
+                int insertIndex = i;
+                int insertValue = array[i];
+                while (insertIndex-gap>=0 && array[insertIndex]<array[insertIndex-gap]){
+                    array[insertIndex] = array[insertIndex - gap];
+                    insertIndex-=gap;
+                }
+                array[insertIndex] = insertValue;
+            }
+        }
+    }
 }

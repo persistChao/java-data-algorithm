@@ -13,7 +13,8 @@ public class QuickSort {
     public static void main(String[] args) {
         int[] arr = new int[]{3,4,6,7,2,7,8,0};
         System.out.println(Arrays.toString(arr));
-        quickSor(arr,0,arr.length-1);
+//        quickSor(arr,0,arr.length-1);
+        quickSort(arr,0,arr.length-1);
         System.out.println(Arrays.toString(arr));
     }
 
@@ -53,5 +54,36 @@ public class QuickSort {
             quickSor(array, low+1, end);
         }
 
+    }
+
+    public static void quickSort(int[] array ,int left ,int right){
+        if (left>=right){
+            return;
+        }
+        int l = left;
+        int r = right;
+        while (l<r){
+            //标准参考值为第一个元素 也就是array[left]  或者是 直接用array[left]
+            int standard = array[left];
+            while (l<r && array[r]>=standard){
+                r--;
+            }
+            while (l<r && array[l]<=standard){
+                l++;
+            }
+            //如果l=r 则调换left 和 当前指针指向的值
+            if (r==l){
+                int temp = array[r];
+                array[r] = array[left];
+                array[left] = temp;
+            }else {
+                //如果r不等于l则 将l 和r 指向的值交换
+                int temp = array[l];
+                array[l] = array[r];
+                array[r] = temp;
+            }
+        }
+        quickSort(array, left, l-1);
+        quickSort(array, r+1, right);
     }
 }

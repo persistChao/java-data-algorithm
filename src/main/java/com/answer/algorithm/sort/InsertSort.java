@@ -14,7 +14,8 @@ public class InsertSort {
     public static void main(String[] args) {
         int[] array = new int[]{5, 3, 2, 8, 9, 1, 0};
         System.out.println(Arrays.toString(array));
-        insertSort2(array);
+//        insertSort2(array);
+        insertSort3(array);
         System.out.println(Arrays.toString(array));
     }
 
@@ -49,6 +50,21 @@ public class InsertSort {
                 array[j + 1] = temp;
             }
 
+        }
+    }
+
+    public static void insertSort3(int[] array){
+        for (int i = 1; i <array.length ; i++) {
+            int insertIndex = i;
+            int insertValue = array[i];
+
+            while (insertIndex-1>=0 && array[insertIndex-1]>insertValue){
+                //这里 insertIndex>0 应该是 insertIndex-1>=0
+//            while (insertIndex>0 && array[insertIndex-1]>insertValue){
+                array[insertIndex] = array[insertIndex-1];
+                insertIndex--;
+            }
+            array[insertIndex] = insertValue;
         }
 
     }
