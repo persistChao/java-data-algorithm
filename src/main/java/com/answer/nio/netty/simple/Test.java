@@ -1,6 +1,6 @@
 package com.answer.nio.netty.simple;
 
-import io.netty.util.NettyRuntime;
+//import io.netty.util.NettyRuntime;
 
 /**
  * @author answer
@@ -9,9 +9,9 @@ import io.netty.util.NettyRuntime;
  */
 public class Test {
     public static void main(String[] args) {
-        int a = NettyRuntime.availableProcessors() * 2;
-
-        System.out.println(NettyRuntime.availableProcessors());
-        System.out.println(a);
+//        int a = NettyRuntime.availableProcessors() * 2;
+//
+//        System.out.println(NettyRuntime.availableProcessors());
+//        System.out.println(a);
     }
 }
