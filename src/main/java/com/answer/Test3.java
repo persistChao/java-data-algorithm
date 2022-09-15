@@ -1,5 +1,7 @@
 package com.answer;
 
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,4 +59,15 @@ public class Test3 {
         return size;
     }
 
+
+    @Test
+    public void test1() {
+         double total = 0;
+         double money = 30000;
+
+        for (int i =1 ; i <=10 ;i++){
+            total = total + money + (money*i*0.035);
+        }
+        System.out.println(total);
+    }
 }

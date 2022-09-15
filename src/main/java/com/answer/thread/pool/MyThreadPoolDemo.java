@@ -1,5 +1,7 @@
 package com.answer.thread.pool;
 
+import com.answer.thread.monitor.ThreadPoolMonitor;
+
 import java.util.concurrent.*;
 
 /**
@@ -18,10 +20,12 @@ public class MyThreadPoolDemo {
 //        ExecutorService executorService2 = Executors.newSingleThreadExecutor();
 //        ExecutorService executorService3 = Executors.newCachedThreadPool();
 
-        ExecutorService threadPool =
-                new ThreadPoolExecutor(2, 5, 100L,
-                        TimeUnit.SECONDS, new LinkedBlockingQueue<>(3), Executors.defaultThreadFactory(), new ThreadPoolExecutor.DiscardPolicy());
+//        ExecutorService threadPool =
+//                new ThreadPoolExecutor(2, 5, 100L,
+//                        TimeUnit.SECONDS, new LinkedBlockingQueue<>(3), Executors.defaultThreadFactory(), new ThreadPoolExecutor.DiscardPolicy());
 
+        ThreadPoolMonitor threadPoolMonitor = new ThreadPoolMonitor(2, 5, 100L,
+                TimeUnit.SECONDS, new LinkedBlockingQueue<>(3), Executors.defaultThreadFactory(), "thread-pool-monitor");
         try {
             //AbortPolicy 直接抛出异常
             //CallerRunsPolicy 最后进入的两个任务回退给main 线程来执行
@@ -31,7 +35,7 @@ public class MyThreadPoolDemo {
             for (int i = 1; i <=10  ; i++) {
 //            for (int i = 1; i <=6  ; i++) {
                 final int tempInt = i;
-                threadPool.execute(()->{
+                threadPoolMonitor.execute(()->{
                     System.out.println(Thread.currentThread().getName() + "\t 号窗口，服务顾客" + tempInt);
                     try {
                         Thread.sleep(4000);
@@ -43,7 +47,7 @@ public class MyThreadPoolDemo {
         }catch (Exception e) {
             e.printStackTrace();
         }finally {
-            threadPool.shutdown();
+//            threadPoolMonitor.shutdown();
         }
 
     }

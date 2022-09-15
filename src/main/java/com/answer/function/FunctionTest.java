@@ -10,18 +10,16 @@ import org.junit.Test;
 public class FunctionTest {
 
     @Test
-    public void testTrueOrFalse(){
+    public void testTrueOrFalse() {
         FunctionUtil.isTrueOrFalse(false).trueOrFalseHandle(() -> {
             System.out.println("true ....");
-        },()->{
+        }, () -> {
             System.out.println("false ....");
-        } );
+        });
     }
 
     @Test
-    public void isBlankOrNotBlank(){
-        FunctionUtil.isBlankOrNotBlank(null).presentOrElseHandle(System.out::println,()->{
-            System.out.println("字符串为空");
-        });
+    public void isBlankOrNotBlank() {
+        FunctionUtil.isBlankOrNotBlank(null).presentOrElseHandle(System.out::println, () -> System.out.println("字符串为空"));
     }
 }
