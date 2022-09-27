@@ -25,7 +25,7 @@ public class FunctionUtil {
         };
     }
 
-    public static PresentOrElseHandle<?> isBlankOrNotBlank(String str){
+    public static PresentOrElseHandle<?> isBlankOrNotBlank(String str ){
         return (consumer,runnable )->{
             if (str==null || str.length()==0){
                 runnable.run();

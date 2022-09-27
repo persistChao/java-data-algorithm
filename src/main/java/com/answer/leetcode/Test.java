@@ -11,6 +11,7 @@ import java.util.Set;
  * ab                          ab           2
  * aba                         ab           2
  * abcabcbb                 abc,cab,bca     3
+ *
  * @author answer
  * @version 1.0.0
  * @date 2022/1/6 5:27 下午
@@ -22,8 +23,8 @@ public class Test {
         System.out.println(str.charAt(1));
     }
 
-    public static int lengthOfLongestSubstring(String str ,String substring){
-        if (str.length()==0){
+    public static int lengthOfLongestSubstring(String str, String substring) {
+        if (str.length() == 0) {
             return 0;
         }
         if (substring.length() == 0) {
@@ -31,20 +32,17 @@ public class Test {
         }
         //用set来记录滑动窗口类所有的字符串
         Set<String> set = new HashSet<>();
-        int left=0 ,right =0;
+        int left = 0, right = 0;
         int n = str.length();
         int maxLength = 0;
-        for (int i = right; right<n ; i++) {
+        for (int i = right; right < n; i++) {
             //
-            while (set.contains(str.charAt(i))){
+            while (set.contains(str.charAt(i))) {
                 set.remove(str.charAt(left));
-                left+=1;
+                left += 1;
                 set.add(String.valueOf(str.charAt(i)));
-
-
             }
         }
-
-return 0;
+        return 0;
     }
 }
