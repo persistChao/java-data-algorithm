@@ -54,6 +54,17 @@ public class ReverseSingleLinkedList {
 
     }
 
+
+    /**
+     * 合并有序单链表
+     * 1 3 5 7
+     * 2 4 6 8
+     * 合并为1 2 3 4 5 6 7 8
+     *
+     * @param node1 node1
+     * @param node2 node2
+     * @return {@link Node}
+     */
     public static Node mergeNode(Node node1, Node node2) {
 
         Node newNode = new Node(0);

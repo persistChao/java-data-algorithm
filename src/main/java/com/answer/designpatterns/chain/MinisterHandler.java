@@ -6,6 +6,7 @@ package com.answer.designpatterns.chain;
  **/
 public class MinisterHandler extends Handler{
 
+
     @Override
     public void handleRequest(String name, int days) {
         System.out.println("责任链第【3】步 Minister handler");

@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Consumer;
 import java.util.function.Function;
 
 /**
@@ -26,43 +25,30 @@ public class IfAndElse {
         String value2 = "value2";
         String value3 = "value3";
 
+        //将如下代码 优化
         if (param.equals(value1)) {
-            doAction1(value1);
+//            doAction1(value1);
         } else if (param.equals(value2)) {
-            doAction2(value2);
+//            doAction2(value2);
         } else if (param.equals(value3)) {
-            doAction3(value3);
+//            doAction3(value3);
         }
-// ...
+
+        //优化后
         Map<String, Function<String , String>> actionMappings = new HashMap<>();
-        // When init
-        actionMappings.put(value1, IfAndElse::doAction1);
-        actionMappings.put(value2, (someParams) ->  doAction2(someParams));
-        actionMappings.put(value3, (someParams) ->  doAction3(someParams));
+        // 这里(someParams) -> {System.out.print("Exec value2 method someParams" + someParams); return  someParams + "_value2";}  相当于doAction方法
+        actionMappings.put(value1, (someParams) ->  {System.out.print("Exec value1 method someParams" + someParams); return  someParams + "_value1";});
+        actionMappings.put(value2, (someParams) ->  {System.out.print("Exec value2 method someParams" + someParams); return  someParams + "_value2";});
+        actionMappings.put(value3, (someParams) ->  {System.out.print("Exec value2 method someParams" + someParams); return  someParams + "_value2";});
 
-
+        // 封装成方法直接调用
         judgeAgeArea(10,"张三");
     }
 
-    private static  String doAction3(String str){
-        System.out.println(str);
-        return str;
-    }
 
-    private static  String doAction1(String str){
-        System.out.println(str);
-        return str;
-    }
-
-    private static  String doAction2(String str){
-        System.out.println(str);
-        return str;
-    }
 
     private static Map<Byte, Function<JSONObject , JSONObject>> actionMappings = new HashMap<>(16);
     static {
-
-//        Function<JSONObject , JSONObject> function = j -> {j.put("optType","conn");return j;};
         actionMappings.put((byte) 0x01, j -> {j.put("optType","conn");return j;});
         actionMappings.put((byte) 0x02, j -> {j.put("optType","asr");return j;});
         actionMappings.put((byte) 0x03, j -> {j.put("optType","tts");return j;});
@@ -79,7 +65,7 @@ public class IfAndElse {
      */
     public static void judgeAgeArea(Integer age , String name){
         Map<Integer, Function<String , String>> actionMappings = new HashMap<>(16);
-        actionMappings.put(10,(param)->doTen(param));
+        actionMappings.put(10, IfAndElse::doTen);
         actionMappings.put(20,(param)->doTwenty(param));
         actionMappings.put(30,(param)->doThirty(param));
         // 省略 null 判断
