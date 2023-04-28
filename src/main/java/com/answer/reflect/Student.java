@@ -26,6 +26,11 @@ public class Student {
         this.depart = depart;
     }
 
+
+    private void printName() {
+        System.out.println("name = " + this.name);
+    }
+
     @Override
     public String toString() {
         return "[name=" + name + ",age=" + age + ",depart=" + depart +"]";

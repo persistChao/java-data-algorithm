@@ -18,6 +18,10 @@ public class Person {
         this.hobby = hobby;
     }
 
+    public Person() {
+
+    }
+
     public String getName() {
         return name;
     }

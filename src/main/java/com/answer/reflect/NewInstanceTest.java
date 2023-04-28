@@ -15,6 +15,6 @@ public class NewInstanceTest {
 
     public static void main(String[] args) throws IllegalAccessException, InstantiationException {
         Class c = Date.class;
-//        Date d1 =() c.newInstance();
+        Date d1 =(Date) c.newInstance();
     }
 }

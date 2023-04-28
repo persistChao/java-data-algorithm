@@ -24,13 +24,16 @@ public class ClassForNameTest {
             System.out.println("Student中包含的方法");
             for (int i = 0; i < methods.length; i++) {
                 System.out.println(methods[i]);
+
             }
+
             Constructor<?>[] constructors = clazz.getConstructors();
             System.out.println("Student中包含的构造方法");
             for (int i = 0; i < constructors.length; i++) {
                 System.out.println(constructors[i]);
             }
             Student student = (Student) clazz.newInstance();
+            methods[2].invoke(student,fields[0]);
             Constructor constructor = clazz.getDeclaredConstructor(String.class, int.class, String.class);
             Student s1 =(Student) constructor.newInstance("suchao", 20, "ksc");
             System.out.println("s1:  " + s1.toString());
