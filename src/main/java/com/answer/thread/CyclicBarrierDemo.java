@@ -24,9 +24,7 @@ public class CyclicBarrierDemo {
                 System.out.println(Thread.currentThread().getName() + "\t收集到弟"+tempInt + "颗龙珠");
                 try {
                     cyclicBarrier.await();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (BrokenBarrierException e) {
+                } catch (InterruptedException | BrokenBarrierException e) {
                     e.printStackTrace();
                 }
             },String.valueOf(i)).start();

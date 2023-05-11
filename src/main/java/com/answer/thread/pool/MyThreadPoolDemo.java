@@ -27,9 +27,9 @@ public class MyThreadPoolDemo {
     }
 
     public static void main(String[] args) {
-//        ExecutorService executorService1 = Executors.newFixedThreadPool(10);
+        ExecutorService executorService1 = Executors.newFixedThreadPool(10);
 //        ExecutorService executorService2 = Executors.newSingleThreadExecutor();
-//        ExecutorService executorService3 = Executors.newCachedThreadPool();
+        ExecutorService executorService3 = Executors.newCachedThreadPool();
 
         ExecutorService threadPool =
                 new ThreadPoolExecutor(2, 5, 100L,
