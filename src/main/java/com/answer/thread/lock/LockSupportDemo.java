@@ -7,6 +7,12 @@ import java.util.concurrent.locks.LockSupport;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
+ *
+ * 暂停线程和唤醒线程的方式
+ * wait notify notifyAll
+ * LockSupport.park   unpark
+ * Condition await()  signal()
+ *
  * @author answer
  * @version 1.0.0
  * @date 2021/3/29 4:42 下午
@@ -38,6 +44,9 @@ public class LockSupportDemo {
         }, "b");
         b.start();
 
+
+        lockAndCondition();
+
     }
 
 
@@ -54,7 +63,7 @@ public class LockSupportDemo {
                 lock.unlock();
             }
 
-        }, "A").start();
+        }, "AA").start();
 
 
         new Thread(() -> {
@@ -65,7 +74,7 @@ public class LockSupportDemo {
             } finally {
                 lock.unlock();
             }
-        }, "B").start();
+        }, "BB").start();
     }
 
     public static void synchonrizedAndNotify() {
