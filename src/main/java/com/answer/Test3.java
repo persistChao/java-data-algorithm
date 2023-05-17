@@ -70,4 +70,33 @@ public class Test3 {
         }
         System.out.println(total);
     }
+
+
+
+    @Test
+    public void test(){
+        System.out.println(findId(0));
+    }
+
+    public int findId(int id ){
+        Integer temp = null;
+        Integer findId = getId(id);
+        System.out.println(findId);
+        if (findId!=null){
+            temp =  findId(findId);
+            if (temp!=null){
+                return temp;
+            }
+        }
+
+        return id;
+    }
+
+    /** 模拟findTeamLeader代码 **/
+    private Integer getId(int id) {
+        if (id<4){
+            return id +1;
+        }
+        return null;
+    }
 }

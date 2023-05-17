@@ -33,7 +33,8 @@ class ShareResource {
                 condition1.await();
             }
             for (int i = 1; i <= 5; i++) {
-                System.out.println(Thread.currentThread().getName() + "\t" + i);
+//                System.out.println(Thread.currentThread().getName() + "\t" + i);
+                System.out.print("A");
             }
             number = 2;
             condition2.signal();
@@ -52,7 +53,8 @@ class ShareResource {
             }
 
             for (int i = 1; i <= 10; i++) {
-                System.out.println(Thread.currentThread().getName() + "\t" + i);
+//                System.out.println(Thread.currentThread().getName() + "\t" + i);
+                System.out.print("B");
             }
             number = 3;
             condition3.signal();
@@ -70,7 +72,8 @@ class ShareResource {
                 condition3.await();
             }
             for (int i = 1; i <= 15; i++) {
-                System.out.println(Thread.currentThread().getName() + "\t" + i);
+//                System.out.println(Thread.currentThread().getName() + "\t" + i);
+                System.out.print("C");
             }
             number = 1;
             condition1.signal();

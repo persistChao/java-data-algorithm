@@ -1,20 +1,18 @@
 package com.answer.thread;
 
 /**
- * 交替打印A和B10次 ABABABABABABABAB...
  * @author answer
  * @version 1.0.0
- * @date 2021/12/30 4:58 下午
+ * @date 2023/5/10 下午4:34
  */
-public class PrintAB {
+public class PrintABDemo {
 
 
-   static class TempData {
+     static class Data {
         private int flag = 1;
 
-        public synchronized void printA(){
-            //如果flag==1 就是打印A 不等于1 就等待
-            if (flag!=1){
+        public synchronized void printA() {
+            if (flag != 1) {
                 try {
                     wait();
                 } catch (InterruptedException e) {
@@ -26,8 +24,8 @@ public class PrintAB {
             notifyAll();
         }
 
-        public synchronized void printB(){
-            if (flag!=2){
+        public synchronized void printB() {
+            if (flag != 2) {
                 try {
                     wait();
                 } catch (InterruptedException e) {
@@ -38,21 +36,21 @@ public class PrintAB {
             flag--;
             notifyAll();
         }
+
     }
 
     public static void main(String[] args) {
-        TempData tempData = new TempData();
-        new Thread(()->{
-            for (int i = 0; i <10 ; i++) {
-                tempData.printA();
+        Data d = new Data();
+        new Thread(() -> {
+            for (int i = 0; i < 10; i++) {
+                d.printA();
             }
-        },"Thread-A").start();
+        }).start();
 
-        new Thread(()->{
-            for (int i = 0; i <10 ; i++) {
-                tempData.printB();
+        new Thread(() -> {
+            for (int i = 0; i < 10; i++) {
+                d.printB();
             }
-        },"Thread-B").start();
+        }).start();
     }
 }
-

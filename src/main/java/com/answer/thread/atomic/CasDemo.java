@@ -65,6 +65,7 @@ public class CasDemo {
 
 
         System.out.println(a.compareAndSet(5, 1024) + "\t current data:" + a.get());
+        System.out.println(a.compareAndSet(2019, 1024) + "\t current data:" + a.get());
 
     }
 }
