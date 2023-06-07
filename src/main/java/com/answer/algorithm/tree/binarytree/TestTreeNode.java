@@ -30,6 +30,8 @@ public class TestTreeNode {
 //        print(root);
 //        printLevelOrder(root);
         printZhi(root);
+        System.out.println();
+        System.out.println(getDepth(root));
     }
 
     public static void print(TreeNode root) {
@@ -101,6 +103,38 @@ public class TestTreeNode {
 
         }
         list.forEach(x->x.forEach(System.out::print));
+    }
+
+
+    public static int countTreeDeep(TreeNode root) {
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        int deep = 1;
+        while (!q.isEmpty()) {
+            TreeNode currentNode = q.poll();
+            if (currentNode.getLeftNode()!=null || currentNode.getRightNode()!=null) {
+                deep++;
+            }
+            if (currentNode.getLeftNode()!=null) {
+                q.add(currentNode.getLeftNode());
+            }
+
+            if (currentNode.getRightNode()!=null) {
+                q.add(currentNode.getRightNode());
+            }
+        }
+        return deep;
+    }
+
+
+    public static int getDepth(TreeNode root) {
+        if (root == null) {
+            return 0;
+        } else {
+            int leftDepth = getDepth(root.getLeftNode());
+            int rightDepth = getDepth(root.getRightNode());
+            return Math.max(leftDepth, rightDepth) + 1;
+        }
     }
 
 
