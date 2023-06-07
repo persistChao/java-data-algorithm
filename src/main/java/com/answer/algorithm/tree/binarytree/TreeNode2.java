@@ -124,4 +124,16 @@ public class TreeNode2 {
 
     }
 
+
+    public int maxDepth(TreeNode2 root) {
+        if (root == null) {
+            return 0;
+        }
+//        System.out.println(root.getValue());
+
+        int leftDepth = maxDepth(root.lNode);
+        int rightDepth = maxDepth(root.rNode);
+        return Math.max(leftDepth,rightDepth) + 1;
+    }
+
 }

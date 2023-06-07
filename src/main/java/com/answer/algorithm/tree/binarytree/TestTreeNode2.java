@@ -30,5 +30,8 @@ public class TestTreeNode2 {
 //        root.levelOrder(root);
 //        System.out.println();
         root.zhiziPrint(root);
+        System.out.println();
+        int depth = root.maxDepth(root);
+        System.out.println(depth);
     }
 }
